@@ -1,13 +1,13 @@
-﻿using System.Numerics;
+﻿using main;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace main
 {
     internal class Program
     {
-        
-        // todo : you need to find how to create a vector of a class
-        static user[] users = new user[10]; // to store the object for each user
-        static int noOfAccounts = 0;
+        static List<user> users = new List<user>(); 
+        static accounts account = new accounts(users);
 
         static void Main(string[] args)
         {
@@ -27,7 +27,7 @@ namespace main
                     Console.Write("Password: ");
                     string password = Console.ReadLine();
 
-                    if(checkAccount(userName, password))
+                    if(account.checkAccount(userName , password))
                     {
                         Console.WriteLine("Login Succesfully");
                     }
@@ -54,31 +54,5 @@ namespace main
                 }
             }
         }
-
-        static bool checkAccount(string username, string password) {
-            bool userNameFound = false, passwordFound = false;
-           
-            for (int i = 0; i < noOfAccounts; i++)
-            {
-                if (username == users[i].username) userNameFound = true;
-            }
-
-            for (int i = 0; i < noOfAccounts; i++)
-            {
-                if (password == users[i].password) passwordFound = true;
-            }
-            return (userNameFound &&  passwordFound);
-        }
-
-        static void RegisterAccount(string username, string password) {
-            // todo : you need to check if the password is strong
-            // todo : you need to check if the username is not taken
-            users[noOfAccounts] = new user();
-            users[noOfAccounts].username = username;
-            users[noOfAccounts].password = password;
-            Console.WriteLine("Account Created Successfully");
-            noOfAccounts++;
-        }
-       
     }
 }

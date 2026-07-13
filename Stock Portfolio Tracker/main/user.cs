@@ -9,8 +9,8 @@ namespace main
     internal class user
     {
 
-        public string username {  get; set; }
-        public string password { get; set; }
+        public static string username {  get; set; }
+        public static string password { get; set; }
  
     }
 }
