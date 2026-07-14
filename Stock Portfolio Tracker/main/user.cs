@@ -1,16 +1,26 @@
-﻿using System;
+﻿namespace main;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace main
+internal class User
 {
-    internal class user
-    {
+    public string username {  get; set; }
+    public string password { get; set; }
 
-        public static string username {  get; set; }
-        public static string password { get; set; }
- 
-    }
+    public Portfolio portfolio { get; set; } = new Portfolio();
 }
+/*
+ 
+User
+ ├── Username
+ ├── Password
+ └── Portfolio
+       ├── Cash
+       └── Holdings
+            ├── AAPL
+            ├── TSLA
+            └── NVDA
+ */
