@@ -1,6 +1,5 @@
-﻿namespace main;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using main.Models;
+namespace main;
 
 public class Program
 {

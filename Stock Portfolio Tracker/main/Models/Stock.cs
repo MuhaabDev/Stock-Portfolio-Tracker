@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace main
+namespace main.Models
 {
-    internal class Stock
+    public class Stock
     {
         public decimal price { set; get; }
-
         public int quantity { set; get; }
 
     }

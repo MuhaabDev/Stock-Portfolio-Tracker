@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace main
+namespace main.Models
 {
-    internal class Portfolio
+    public class Portfolio
     {
         private decimal cash { get; set; }
         public List<Stock> Holdings { get; set; } = new();
