@@ -1,9 +1,18 @@
 ﻿
+using main.Models;
+
 namespace main.Services
 {
-    public static class Settings
+    public class Settings
     {
-        public static void DisplaySettings()
+        public List<User> user;
+        public Settings(List<User> users)
+        {
+            user = users;
+        }
+
+        private ConsoleColor currentColor = ConsoleColor.White;
+        public void DisplaySettings()
         {
             Console.WriteLine("[1] Change Color \t \t [2] Return");
             string input = Console.ReadLine();
@@ -13,7 +22,7 @@ namespace main.Services
             }
         }
 
-        public static string  ChooseColor()
+        public string  ChooseColor()
         {
             foreach(var color in Enum.GetNames(typeof(ConsoleColor)))
             {
@@ -25,11 +34,13 @@ namespace main.Services
             return colorName;
         }
 
-        public static void changeColor(string colorName) {
+        public void changeColor(string colorName) {
             try
             {
                 ConsoleColor SelectedColor =(ConsoleColor) Enum.Parse(typeof(ConsoleColor), colorName, true);
                 Console.ForegroundColor = SelectedColor;
+                user[Accounts.currentAccount].SelectedColor = SelectedColor;
+                
             }
             catch (Exception ex) {
                 Console.WriteLine($"Wrong Input !!! : {ex.Message}");
