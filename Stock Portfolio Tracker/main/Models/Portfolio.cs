@@ -9,7 +9,7 @@ namespace main.Models
 {
     public class Portfolio
     {
-        private decimal cash { get; set; }
+        public decimal cash { get; set; }
         public List<Stock> Holdings { get; set; } = new();
 
         public decimal DisplayCash()

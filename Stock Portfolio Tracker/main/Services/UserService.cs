@@ -5,17 +5,15 @@ namespace main.Services;
 
 public class UserService
 {
-    int UserId { get; set; }
-    public List<User> users { get; set; };
-    public UserService( List<User> user , int currentAccount)
+    private int userId { get; set; }
+    public List<User> users;
+    public UserService(List<User> user)
     {
-        UserId = currentAccount;
         users = user;
-
     }
     public static int displayUserService()
     {
-        Console.WriteLine("1: Display Cash Balance \t\t 2: add Balance \t\t 3: Logout");
+        Console.WriteLine("1: Display Cash Balance \t\t 2: add Balance \t\t 3: Settings \t\t 4: Logout");
         var isSuccesful = int.TryParse(Console.ReadLine(), out int op);
         return op;
     }
@@ -32,7 +30,4 @@ public class UserService
         var isSuccesful = decimal.TryParse(Console.ReadLine(), out decimal amount);
         users[Accounts.currentAccount].portfolio.AddCash(amount);
     }
-
-
-
 }
