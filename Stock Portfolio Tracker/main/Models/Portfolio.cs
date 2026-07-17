@@ -10,7 +10,7 @@ namespace main.Models
     public class Portfolio
     {
         public decimal cash { get; set; }
-        public List<Stock> Holdings { get; set; } = new();
+        public List<StockHolding> Holdings { get; set; } = new();
 
         public decimal DisplayCash()
         {
@@ -22,3 +22,22 @@ namespace main.Models
         }
     }
 }
+/*
+ User
+    │
+    ▼
+Portfolio
+    │
+    ▼
+List<StockHolding>
+
+StockHolding
+    ├── Stock
+    ├── Quantity
+    └── AverageBuyPrice
+
+Stock
+    ├── Symbol
+    ├── Name
+    └── CurrentPrice
+ */

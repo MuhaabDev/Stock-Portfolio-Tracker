@@ -13,8 +13,14 @@ public class UserService
     }
     public static int displayUserService()
     {
-        Console.WriteLine("1: Display Cash Balance \t\t 2: add Balance \t\t 3: Settings \t\t 4: Logout");
+        Console.WriteLine("[1]: Display Cash Balance \t\t [2]: add Balance \t\t [3]: Trade \t\t [4]: Settings \t\t [5]: Logout");
         var isSuccesful = int.TryParse(Console.ReadLine(), out int op);
+        return op;
+    }
+    public static int displayTradingService()
+    {
+        Console.WriteLine("[1]: User Portfolio \t\t [2]: Stocks \t\t [3]: Buy \t\t [4]: Sell \t\t [5]: Exit");
+        var tr = int.TryParse(Console.ReadLine(), out int op);
         return op;
     }
 
@@ -30,4 +36,5 @@ public class UserService
         var isSuccesful = decimal.TryParse(Console.ReadLine(), out decimal amount);
         users[Accounts.currentAccount].portfolio.AddCash(amount);
     }
+
 }

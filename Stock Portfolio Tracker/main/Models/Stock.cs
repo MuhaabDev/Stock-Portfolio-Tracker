@@ -8,8 +8,8 @@ namespace main.Models
 {
     public class Stock
     {
-        public decimal price { set; get; }
-        public int quantity { set; get; }
-
-    }
+        public string Symbol { get; set; }
+        public string Name { get; set; }
+        public decimal Price { set; get; }
+    }    
 }

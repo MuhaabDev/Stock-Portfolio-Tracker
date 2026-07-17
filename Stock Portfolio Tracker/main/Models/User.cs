@@ -13,7 +13,6 @@ public class User
     public string username { get; set; }
     public string password { get; set; }
     public Portfolio portfolio { get; set; } = new Portfolio();
-
 }
 /*
 User
