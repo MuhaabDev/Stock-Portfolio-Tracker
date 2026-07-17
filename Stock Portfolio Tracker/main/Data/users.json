@@ -3,8 +3,45 @@
     "username": "MohabelKodsh",
     "password": "Mh29102004@",
     "portfolio": {
-      "cash": 137500,
-      "Holdings": []
+      "cash": 12456.00,
+      "Holdings": [
+        {
+          "stock": {
+            "Symbol": "BTFH",
+            "Name": "Beltone Holding",
+            "Price": 3.10
+          },
+          "Quantiy": 4000,
+          "AverageBuyPrice": 3.10
+        },
+        {
+          "stock": {
+            "Symbol": "META",
+            "Name": "Meta",
+            "Price": 720.40
+          },
+          "Quantiy": 100,
+          "AverageBuyPrice": 720.40
+        },
+        {
+          "stock": {
+            "Symbol": "ORHD",
+            "Name": "Orascom Development",
+            "Price": 39
+          },
+          "Quantiy": 1000,
+          "AverageBuyPrice": 39
+        },
+        {
+          "stock": {
+            "Symbol": "TSLA",
+            "Name": "Tesla",
+            "Price": 320.80
+          },
+          "Quantiy": 5,
+          "AverageBuyPrice": 320.80
+        }
+      ]
     }
   }
 ]

@@ -13,9 +13,17 @@ public class PortfolioService
     public void DisplayUserStocks()
     {
         Console.WriteLine("User Stocks\r\n----------------------------------");
+        if(currentUser.portfolio.Holdings.Count == 0)
+        {
+            Console.WriteLine("Portfolio Is Empty");
+            return;
+        }
         foreach (var s in currentUser.portfolio.Holdings)
         {
-            Console.WriteLine($"{s.stock.Symbol}\t{s.stock.Name}\t${s.Quantiy}\t${s.AverageBuyPrice}\t${s.Quantiy*s.AverageBuyPrice}");
+            if(s.Quantiy > 0)
+            {
+                Console.WriteLine($"{s.stock.Symbol}\t{s.stock.Name}\t{s.Quantiy}\t${s.AverageBuyPrice}\t${s.Quantiy*s.AverageBuyPrice}");
+            }
         }
     }
 
@@ -47,14 +55,19 @@ public class PortfolioService
     {
         Stock stock = StockService.FindStock(symbol);
         if (stock != null) {
-            StockHolding stockHolding = new StockHolding();
-            stockHolding.Quantiy += quantity;
-            stockHolding.AverageBuyPrice = stock.Price;
-            if (stock.Price * quantity >= currentUser.portfolio.cash) { 
+            if (stock.Price * quantity <= currentUser.portfolio.cash) { 
+                StockHolding stockHolding = new StockHolding();
+                stockHolding.stock = stock;
+                stockHolding.Quantiy += quantity;
+                stockHolding.AverageBuyPrice = stock.Price;
                 currentUser.portfolio.Holdings.Add(stockHolding);
+                currentUser.portfolio.cash -= quantity*stock.Price;
+                Console.WriteLine($"Bought {quantity} of {symbol} Successfully , Cash Left : ${currentUser.portfolio.cash}");
             }
-            currentUser.portfolio.cash -= quantity*stock.Price;
-            Console.WriteLine($"Bought {quantity} of {symbol} Successfully , Cash Left : ${currentUser.portfolio.cash}");
+            else
+            {
+                Console.WriteLine($"You Don't Have Enough Money");
+            }
         }
         else
         {
@@ -65,7 +78,7 @@ public class PortfolioService
     public void SellStocks(string symbol, int quantity) {
         StockHolding stockHolding = findUserStock(symbol);
         if (stockHolding != null) {
-            if (quantity <= currentUser.portfolio.cash) {
+            if (quantity <= stockHolding.Quantiy) {
                 stockHolding.Quantiy -= quantity;
                 currentUser.portfolio.cash += quantity * stockHolding.stock.Price;
                 Console.WriteLine($"{quantity} of {stockHolding.stock.Symbol} sold Successfully , Got {stockHolding.Quantiy} left");

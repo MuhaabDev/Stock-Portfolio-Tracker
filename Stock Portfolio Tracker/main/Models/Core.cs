@@ -32,7 +32,7 @@ static class Core
                         break;
                     case 3:
                         portfolioService = new PortfolioService(users[Accounts.currentAccount]);
-                        int op2 = UserService.displayTradingService();
+                        int op2 = 0;
                         while(op2 != 5)
                         {
                             op2 = UserService.displayTradingService();
@@ -46,10 +46,12 @@ static class Core
                                 case 3:
                                     var (symbol, quantity) = portfolioService.GetStockOrder(); 
                                     portfolioService.BuyStocks(symbol , quantity);
+                                    dataService.SaveUsers(users);
                                     break;
                                 case 4:
                                     var (symboll, quantityy) = portfolioService.GetStockOrder(); 
                                     portfolioService.SellStocks(symboll , quantityy);
+                                    dataService.SaveUsers(users);
                                     break;
                                 default:
                                     Console.WriteLine("Wrong Input , Try Again");
