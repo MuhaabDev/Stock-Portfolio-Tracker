@@ -12,19 +12,32 @@ public class PortfolioService
 
     public void DisplayUserStocks()
     {
-        Console.WriteLine("User Stocks\r\n----------------------------------");
-        if(currentUser.portfolio.Holdings.Count == 0)
+        Console.WriteLine("User Stocks");
+        Console.WriteLine("----------------------------------------------------------------------------");
+        Console.WriteLine(
+            $"{"Symbol",-10} {"Name",-25} {"Qty",8} {"Avg Price",12} {"Total Cost",15}");
+        Console.WriteLine("----------------------------------------------------------------------------");
+
+        if (currentUser.portfolio.Holdings.Count == 0)
         {
-            Console.WriteLine("Portfolio Is Empty");
+            Console.WriteLine("Portfolio is empty.");
             return;
         }
-        foreach (var s in currentUser.portfolio.Holdings)
+
+        foreach (var holding in currentUser.portfolio.Holdings)
         {
-            if(s.Quantiy > 0)
+            if (holding.Quantiy > 0)
             {
-                Console.WriteLine($"{s.stock.Symbol}\t{s.stock.Name}\t{s.Quantiy}\t${s.AverageBuyPrice}\t${s.Quantiy*s.AverageBuyPrice}");
+                Console.WriteLine(
+                    $"{holding.stock.Symbol,-10} " +
+                    $"{holding.stock.Name,-25} " +
+                    $"{holding.Quantiy,8} " +
+                    $"${holding.AverageBuyPrice,11:F2} " +
+                    $"${holding.Quantiy * holding.AverageBuyPrice,14:F2}");
             }
         }
+
+        Console.WriteLine("----------------------------------------------------------------------------");
     }
 
     public (string Symbol, int Quantity) GetStockOrder()
