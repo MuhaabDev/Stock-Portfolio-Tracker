@@ -1,5 +1,6 @@
 ﻿using main.Models;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Serialization;
 
 namespace main.Services;
 
@@ -60,12 +61,16 @@ internal class StockService
             s.Symbol.Equals(symbol, StringComparison.OrdinalIgnoreCase));
     }
 
-    public  void DisplayAvailableStocks()
+    public void DisplayAvailableStocks()
     {
-        Console.WriteLine("Available Stocks\r\n----------------------------------");
-        foreach(var x in GetStocks())
+        Console.WriteLine("Available Stocks");
+        Console.WriteLine("------------------------------------------------");
+        Console.WriteLine($"{"Symbol",-10} {"Name",-25} {"Price",10}");
+        Console.WriteLine("------------------------------------------------");
+
+        foreach (var x in GetStocks())
         {
-            Console.WriteLine($"{x.Symbol}     {x.Name}    ${x.Price}");
+            Console.WriteLine($"{x.Symbol,-10} {x.Name,-25} ${x.Price,9:F2}");
         }
     }
 

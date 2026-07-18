@@ -8,10 +8,10 @@ static class Core
         DataService dataService = new DataService();
         List<User> users = dataService.LoadUsers();
         AccountService accountService = new AccountService(users);
-        UserService userService = new UserService(users);
         StockService stockService = new StockService();
-        Settings settings = new Settings(users);
+        Settings settings = new Settings(users[Accounts.currentAccount]);
         PortfolioService portfolioService;
+        UserService userService;
 
         Console.WriteLine(@"---------------------------------------------------------------------
         Welcome To Stock Portfolio Tracker");
@@ -20,7 +20,10 @@ static class Core
         {
             if (Accounts.loggedIn)
             {
-                Console.ForegroundColor = users[Accounts.currentAccount].SelectedColor;
+                int currentAccount = Accounts.currentAccount;
+                userService = new UserService(users[currentAccount]);
+                portfolioService = new PortfolioService(users[currentAccount]);
+                Console.ForegroundColor = users[currentAccount].SelectedColor ?? ConsoleColor.White;
                 int op1 = UserService.displayUserService();
                 switch (op1) {
                     case 1:
@@ -52,9 +55,6 @@ static class Core
                                     var (symboll, quantityy) = portfolioService.GetStockOrder(); 
                                     portfolioService.SellStocks(symboll , quantityy);
                                     dataService.SaveUsers(users);
-                                    break;
-                                default:
-                                    Console.WriteLine("Wrong Input , Try Again");
                                     break;
                             }
                         }

@@ -6,10 +6,10 @@ namespace main.Services;
 public class UserService
 {
     private int userId { get; set; }
-    public List<User> users;
-    public UserService(List<User> user)
+    public User user;
+    public UserService(User user)
     {
-        users = user;
+        this.user = user;
     }
     public static int displayUserService()
     {
@@ -26,7 +26,7 @@ public class UserService
 
     public void displayBalance()
     {
-        decimal currentBalance = users[Accounts.currentAccount].portfolio.DisplayCash();
+        decimal currentBalance = user.portfolio.DisplayCash();
         Console.WriteLine($"Current Balance : {currentBalance}");
     }
 
@@ -34,7 +34,7 @@ public class UserService
     {
         Console.WriteLine("Enter The Amount you Want to Add");
         var isSuccesful = decimal.TryParse(Console.ReadLine(), out decimal amount);
-        users[Accounts.currentAccount].portfolio.AddCash(amount);
+        user.portfolio.AddCash(amount);
     }
 
 }
