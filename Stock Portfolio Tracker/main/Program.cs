@@ -1,11 +1,12 @@
-﻿using main.Models;
+﻿using main.UI;
 namespace main;
 
 public class Program
 {
     static void Main(string[] args)
     {
-        Core.RunProgram();
+        App app = new App();
+        app.Run();
     }   
 }
 

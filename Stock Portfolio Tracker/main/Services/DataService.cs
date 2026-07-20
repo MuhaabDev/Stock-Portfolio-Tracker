@@ -2,7 +2,7 @@
 using main.Models;
 namespace main.Services;
 
-internal class DataService
+public class DataService
 {
     private const string FilePath =
         @"C:\Users\MOHAB\Desktop\Projects\Stock Portfolio Tracker\Stock Portfolio Tracker\main\Data\users.json";

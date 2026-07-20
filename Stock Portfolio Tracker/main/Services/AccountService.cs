@@ -4,7 +4,8 @@ namespace main.Services;
 public class AccountService
 {
     List<User> user;
-    public AccountService(List<User> users )
+    DataService dataService = new DataService();
+    public AccountService(List<User> users)
     {
         user = users;
     }
@@ -32,6 +33,7 @@ public class AccountService
             newUser.username = username;
             newUser.password = password;
             user.Add(newUser);
+            dataService.SaveUsers(user);
             Console.WriteLine("Account Created Successfully");
         }
     }

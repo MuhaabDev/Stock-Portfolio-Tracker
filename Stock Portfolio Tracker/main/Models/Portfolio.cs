@@ -4,7 +4,6 @@ public class Portfolio
 {
     public decimal cash { get; set; }
     public List<StockHolding> Holdings { get; set; } = new();
-
     public decimal DisplayCash()
     {
         return cash;

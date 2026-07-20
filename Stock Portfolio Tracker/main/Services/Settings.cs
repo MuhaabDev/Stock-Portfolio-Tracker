@@ -25,13 +25,25 @@ namespace main.Services
 
         public string  ChooseColor()
         {
-            foreach(var color in Enum.GetNames(typeof(ConsoleColor)))
+            foreach (string color in Enum.GetNames(typeof(ConsoleColor)))
             {
-                ConsoleColor currentColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color , true);
-                Console.ForegroundColor = currentColor;
-                Console.WriteLine(color);
+                ConsoleColor currentColor = Enum.Parse<ConsoleColor>(color);
+                if (currentColor != ConsoleColor.Black)
+                {
+                    Console.ForegroundColor = currentColor;
+                    Console.Write($"{color,-30}");
+                }
+                else
+                {
+                    Console.Write($"{color,-30}");
+                }
+                if ((int)currentColor % 4 == 3)
+                    Console.WriteLine();
             }
-            Console.Write("Please write Color Name: ");
+
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.Write("Please write color name: ");
             while (true)
             {
                 string colorName = Console.ReadLine() ?? string.Empty;
